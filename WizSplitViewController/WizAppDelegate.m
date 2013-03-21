@@ -7,13 +7,23 @@
 //
 
 #import "WizAppDelegate.h"
-
+#import "WizViewController.h"
+#import "WizSplitViewController.h"
 @implementation WizAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    WizViewController* f1 = [[WizViewController alloc] init];
+    f1.color = [UIColor redColor];
+
+    WizViewController* f2 = [[WizViewController alloc] init];
+    f2.color = [UIColor blueColor];
+    
+    WizSplitViewController* sp = [[WizSplitViewController alloc] initWithViewControllers:@[f1,f2]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:sp];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

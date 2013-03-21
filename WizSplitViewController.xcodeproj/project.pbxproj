@@ -16,6 +16,8 @@
 		87810A2816FAA24D0019D749 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 87810A2716FAA24D0019D749 /* Default.png */; };
 		87810A2A16FAA24D0019D749 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87810A2916FAA24D0019D749 /* Default@2x.png */; };
 		87810A2C16FAA24D0019D749 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87810A2B16FAA24D0019D749 /* Default-568h@2x.png */; };
+		87810A3516FAA2810019D749 /* WizSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87810A3416FAA2810019D749 /* WizSplitViewController.m */; };
+		87810A3816FAA97F0019D749 /* WizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87810A3716FAA97F0019D749 /* WizViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,10 @@
 		87810A2716FAA24D0019D749 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		87810A2916FAA24D0019D749 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		87810A2B16FAA24D0019D749 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		87810A3316FAA2810019D749 /* WizSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WizSplitViewController.h; path = SplitViewController/WizSplitViewController.h; sourceTree = "<group>"; };
+		87810A3416FAA2810019D749 /* WizSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WizSplitViewController.m; path = SplitViewController/WizSplitViewController.m; sourceTree = "<group>"; };
+		87810A3616FAA97F0019D749 /* WizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizViewController.h; sourceTree = "<group>"; };
+		87810A3716FAA97F0019D749 /* WizViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,9 @@
 		87810A1B16FAA24D0019D749 /* WizSplitViewController */ = {
 			isa = PBXGroup;
 			children = (
+				87810A3616FAA97F0019D749 /* WizViewController.h */,
+				87810A3716FAA97F0019D749 /* WizViewController.m */,
+				87810A3216FAA25B0019D749 /* WizSplitViewController */,
 				87810A2416FAA24D0019D749 /* WizAppDelegate.h */,
 				87810A2516FAA24D0019D749 /* WizAppDelegate.m */,
 				87810A1C16FAA24D0019D749 /* Supporting Files */,
@@ -97,6 +106,15 @@
 				87810A2B16FAA24D0019D749 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		87810A3216FAA25B0019D749 /* WizSplitViewController */ = {
+			isa = PBXGroup;
+			children = (
+				87810A3316FAA2810019D749 /* WizSplitViewController.h */,
+				87810A3416FAA2810019D749 /* WizSplitViewController.m */,
+			);
+			name = WizSplitViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +185,8 @@
 			files = (
 				87810A2216FAA24D0019D749 /* main.m in Sources */,
 				87810A2616FAA24D0019D749 /* WizAppDelegate.m in Sources */,
+				87810A3516FAA2810019D749 /* WizSplitViewController.m in Sources */,
+				87810A3816FAA97F0019D749 /* WizViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
