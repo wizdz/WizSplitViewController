@@ -32,6 +32,12 @@
     [self.view addSubview:self.rotationTestView];
 	// Do any additional setup after loading the view.
 }
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.rotationTestView.frame = CGRectMake(10, 10, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)-20);
+}
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];

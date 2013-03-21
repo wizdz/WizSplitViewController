@@ -29,12 +29,12 @@ static const int WizSplitSpaceViewWidth = 4;
 }
 - (UIViewController*) masterViewController
 {
-    return [self.childViewControllers objectAtIndex:0];
+    return [self.viewControllers objectAtIndex:0];
 }
 
 - (UIViewController*) detailViewController
 {
-    return [self.childViewControllers objectAtIndex:1];
+    return [self.viewControllers objectAtIndex:1];
 }
 
 - (void) setViewControllers:(NSArray *)viewControllers
@@ -96,6 +96,9 @@ static const int WizSplitSpaceViewWidth = 4;
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    for (UIViewController* vc in self.viewControllers) {
+        [vc didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    }
     [self layoutChildViewControllers];
 }
 
