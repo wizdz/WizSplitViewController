@@ -13,5 +13,4 @@
 @property (nonatomic, readonly) UIViewController* detailViewController;
 @property (nonatomic, strong) NSArray* viewControllers;
 - (id) initWithViewControllers:(NSArray*)viewControllers;
-
 @end
