@@ -106,7 +106,11 @@ static const int WizSplitSpaceViewWidth = 4;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self layoutChildViewControllers];
+}
 - (BOOL) shouldAutorotate
 {
     return YES;
