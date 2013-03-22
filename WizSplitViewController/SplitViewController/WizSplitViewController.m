@@ -44,17 +44,29 @@ static const int WizSplitSpaceViewWidth = 4;
     [self layoutChildViewControllers];
     
 }
-
+- (CGRect) getCurrentRect
+{
+    CGRect rect = self.view.frame;
+    CGFloat width = CGRectGetWidth(rect);
+    CGFloat height = CGRectGetHeight(rect);
+    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+        if (height > 768) {
+            height = CGRectGetWidth([UIScreen mainScreen].bounds);
+            width = CGRectGetHeight([UIScreen mainScreen].bounds);
+        }
+    }
+    else
+    {
+        if (width > 768) {
+            width = CGRectGetWidth([UIScreen mainScreen].bounds);
+            height = CGRectGetHeight([UIScreen mainScreen].bounds);
+        }
+    }
+    return CGRectSetSize(rect, CGSizeMake(width, height));
+}
 - (void) layoutChildViewControllers
 {
     if ([self isViewLoaded]) {
-        if ([self.childViewControllers count]) {
-            for (UIViewController* vc in self.childViewControllers) {
-                [vc willMoveToParentViewController:nil];
-                [vc.view removeFromSuperview];
-                [vc removeFromParentViewController];
-            }
-        }
         for (UIViewController* vc in _viewControllers) {
             [vc willMoveToParentViewController:self];
             [self addChildViewController:vc];
@@ -62,13 +74,16 @@ static const int WizSplitSpaceViewWidth = 4;
             [vc didMoveToParentViewController:self];
         }
         CGRect rect = self.view.frame;
-        NSLog(@"current or is %d",self.interfaceOrientation);
         CGFloat width = CGRectGetWidth(rect);
         CGFloat height = CGRectGetHeight(rect);
         NSAssert(width > WizSplitViewControllerMasterWidth, @"the master viewcontroller width is too short");
         self.masterViewController.view.frame = CGRectMake(0.0, 0.0, WizSplitViewControllerMasterWidth, height);
         self.splitSpaceView.frame = CGRectMake(CGRectGetMaxX(self.masterViewController.view.frame), 0.0, WizSplitSpaceViewWidth, height);
         self.detailViewController.view.frame = CGRectMake(CGRectGetMaxX(self.splitSpaceView.frame), 0.0, width- WizSplitViewControllerMasterWidth, height);
+        self.masterViewController.view.autoresizesSubviews = UIViewAutoresizingFlexibleHeight ;
+        self.detailViewController.view.autoresizesSubviews = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
+        PRINT_CGRECT(self.masterViewController.view.frame);
+        PRINT_CGRECT(self.detailViewController.view.frame);
     }
 }
 
@@ -89,7 +104,7 @@ static const int WizSplitSpaceViewWidth = 4;
         [self.view addSubview:self.splitSpaceView];
     }
     [self layoutChildViewControllers];
-
+    
 	// Do any additional setup after loading the view.
 }
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -98,7 +113,6 @@ static const int WizSplitSpaceViewWidth = 4;
     for (UIViewController* vc in self.viewControllers) {
         [vc didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     }
-    [self layoutChildViewControllers];
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,7 +123,6 @@ static const int WizSplitSpaceViewWidth = 4;
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self layoutChildViewControllers];
 }
 - (BOOL) shouldAutorotate
 {
