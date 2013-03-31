@@ -80,10 +80,8 @@ static const int WizSplitSpaceViewWidth = 4;
         self.masterViewController.view.frame = CGRectMake(0.0, 0.0, WizSplitViewControllerMasterWidth, height);
         self.splitSpaceView.frame = CGRectMake(CGRectGetMaxX(self.masterViewController.view.frame), 0.0, WizSplitSpaceViewWidth, height);
         self.detailViewController.view.frame = CGRectMake(CGRectGetMaxX(self.splitSpaceView.frame), 0.0, width- WizSplitViewControllerMasterWidth, height);
-        self.masterViewController.view.autoresizesSubviews = UIViewAutoresizingFlexibleHeight ;
-        self.detailViewController.view.autoresizesSubviews = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
-        PRINT_CGRECT(self.masterViewController.view.frame);
-        PRINT_CGRECT(self.detailViewController.view.frame);
+        self.masterViewController.view.autoresizesSubviews = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
+        self.detailViewController.view.autoresizesSubviews = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
 }
 
@@ -100,19 +98,25 @@ static const int WizSplitSpaceViewWidth = 4;
     [super viewDidLoad];
     if (!self.splitSpaceView) {
         self.splitSpaceView = [[UIView alloc] init];
-        self.splitSpaceView.backgroundColor = [UIColor grayColor];
+        self.splitSpaceView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:self.splitSpaceView];
     }
     [self layoutChildViewControllers];
     
 	// Do any additional setup after loading the view.
 }
+- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [UIView animateWithDuration:duration animations:^{
+       self.masterViewController.view.frame = CGRectSetWidth(self.masterViewController.view.frame, WizSplitViewControllerMasterWidth);
+    }];
+}
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    for (UIViewController* vc in self.viewControllers) {
-        [vc didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    }
+    self.masterViewController.view.frame = CGRectSetWidth(self.masterViewController.view.frame, WizSplitViewControllerMasterWidth);
+    
 }
 
 - (void)didReceiveMemoryWarning
