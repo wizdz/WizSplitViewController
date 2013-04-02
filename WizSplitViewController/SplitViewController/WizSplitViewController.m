@@ -118,16 +118,23 @@ static const int WizSplitSpaceViewWidth = 4;
     self.masterViewController.view.frame = CGRectSetWidth(self.masterViewController.view.frame, WizSplitViewControllerMasterWidth);
     
 }
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+   self.masterViewController.view.frame = CGRectSetWidth(self.masterViewController.view.frame, WizSplitViewControllerMasterWidth); 
+}
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+   self.masterViewController.view.frame = CGRectSetWidth(self.masterViewController.view.frame, WizSplitViewControllerMasterWidth);  
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
+
 - (BOOL) shouldAutorotate
 {
     return YES;
