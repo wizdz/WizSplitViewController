@@ -9,10 +9,10 @@
 #import "WizSplitViewController.h"
 
 static const int WizSplitViewControllerMasterWidth = 320;
-static const int WizSplitSpaceViewWidth = 4;
+static const int WizSplitSpaceViewWidth = 2;
 
 @interface WizSplitViewController ()
-@property (nonatomic, strong) UIView* splitSpaceView;
+@property (nonatomic, strong) UIImageView* splitSpaceView;
 @end
 
 @implementation WizSplitViewController
@@ -79,6 +79,7 @@ static const int WizSplitSpaceViewWidth = 4;
         NSAssert(width > WizSplitViewControllerMasterWidth, @"the master viewcontroller width is too short");
         self.masterViewController.view.frame = CGRectMake(0.0, 0.0, WizSplitViewControllerMasterWidth, height);
         self.splitSpaceView.frame = CGRectMake(CGRectGetMaxX(self.masterViewController.view.frame), 0.0, WizSplitSpaceViewWidth, height);
+        self.splitSpaceView.image = [UIImage imageNamed:@"tree_shadow"];
         self.detailViewController.view.frame = CGRectMake(CGRectGetMaxX(self.splitSpaceView.frame), 0.0, width- WizSplitViewControllerMasterWidth, height);
         self.masterViewController.view.autoresizesSubviews = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
         self.detailViewController.view.autoresizesSubviews = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -97,7 +98,7 @@ static const int WizSplitSpaceViewWidth = 4;
 {
     [super viewDidLoad];
     if (!self.splitSpaceView) {
-        self.splitSpaceView = [[UIView alloc] init];
+        self.splitSpaceView = [[UIImageView alloc] init];
         self.splitSpaceView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:self.splitSpaceView];
     }
